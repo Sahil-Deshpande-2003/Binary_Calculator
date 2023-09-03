@@ -175,6 +175,8 @@ node* subtract_LL(node *head1,node*head2){
      int len1 = length(head1);
     int len2 = length(head2);
 
+// using their lengths, decide which linked list is bigger in size 
+
     int flag = 1;
 
     if (len1<len2) flag = 0;
@@ -204,8 +206,18 @@ node* subtract_LL(node *head1,node*head2){
 
         node*newnode = (node*)malloc(sizeof(node));
         newnode->data = 0;
+	/*
+	 Eg 		   2002 
+		           - 20
+		it should be
 
-
+     			2002
+		       -0020
+	 
+	so we add zeroes at the beginning
+  
+	*/
+	    
         if (len1<len2){
 
             newnode->next = head1;
@@ -230,6 +242,8 @@ node* subtract_LL(node *head1,node*head2){
     
     if (!flag){
 
+// means 1st LL < 2nd LL, hence swap both LL and ans = -(this result) 
+
         node*c = head1;
         head1 = head2;
         head2  = c;
@@ -246,7 +260,28 @@ node* subtract_LL(node *head1,node*head2){
 
 
 
+/*
 
+Eg  2 3 2
+   -  9 9 
+
+after reversing ->
+
+	2 3 2
+      - 9 9 0
+2<9,so borrows 1 from 3,so that 2 becomes 12 and 3 becomes 2
+
+	12 2 2
+ 	9  9 0
+  now newly created 2 will borrows 1 from other 2
+
+   12 12 1
+   9   9 0
+
+which gives 331 so ans = reverse(331) = 133
+
+
+*/
     
 
 
@@ -282,13 +317,15 @@ node* subtract_LL(node *head1,node*head2){
                     
                   //  store = store->next;
                 //}
+
+		    // you can't borrow 1 from 0 so skip all 0's
                 
                  while(temp && temp->data==0){
                     temp = temp->next;
-                    temp->data+=9;
+                    temp->data+=9; // check
                 }
                 if (temp){
-                    temp->data--;
+                    temp->data--; // borrow 1 from 1st non zero value
                 }
                 
 
@@ -329,7 +366,7 @@ node* subtract_LL(node *head1,node*head2){
 
     node*s = ReverseLL(anshead);
 
-    while(s->data == 0 && s->next) s = s->next;
+    while(s->data == 0 && s->next) s = s->next; // remove all zeroes at the beginning
 
     // && s->next to handle the case 22-22 so that it gives 0
 
@@ -447,7 +484,8 @@ int val = (temp->data)*(multiply_by) + carry;
 
     temphead = ReverseLL(temphead);
 
-	
+// head is a node pointer to a LL which stores the result of all additions performed at any stage
+// temphead is the current LL
 
     head = addTwoLists(head,temphead);
 
@@ -583,7 +621,7 @@ node* divide(node*head1, node*head2){
     }
     
 
-    char *str = check(head1,head2);
+    char *str = check(head1,head2); // checks which LL is greater
 
 
 
@@ -599,7 +637,7 @@ node* divide(node*head1, node*head2){
 
     if (str == "LL2"){
 
-
+	// Eg 2/4 = 0
 
         node*newnode = (node*)malloc(sizeof(node));
         newnode->data = 0;
@@ -623,7 +661,7 @@ node* divide(node*head1, node*head2){
 
 
       
-
+// use repeated addition Eg 6/2 -> 2+2 = 4(ct = 1) , 4<=6 so again 4+2 = 6<=6(ct = 2) , so again, 6+2 = 8>6(ct = 3)  so stop
 
 
 
@@ -632,16 +670,16 @@ node* divide(node*head1, node*head2){
 
 
 
-            head2 = addTwoLists(head2,dummy);
+            head2 = addTwoLists(head2,dummy); // dummy stores the orginal head2, which as 2 in the above Eg
 
 
             node*tp=(node*)malloc(sizeof(node));
             tp->data=1;
             tp->next=NULL;
 
-            counthead=addTwoLists(counthead,tp);
+            counthead=addTwoLists(counthead,tp); // LL which stores quotient
 
-
+// what is the role of anshead?
 
             if (!anshead){
 
