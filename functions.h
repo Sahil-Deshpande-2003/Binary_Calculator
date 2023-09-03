@@ -23,7 +23,7 @@ node* divide(node*head1, node*head2);
 
 typedef struct stack{
 
-    node* *arr;
+    node* *arr; // each element of array is a pointer to a node
 
     int size;
 
