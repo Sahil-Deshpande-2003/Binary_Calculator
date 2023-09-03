@@ -89,7 +89,7 @@ node* pop(stack *s){
 
    node*head = s->arr[s->top];
 
-   s->arr[s->top] = NULL; // I forgot this line
+   s->arr[s->top] = NULL; 
 
  
    s->top--;
@@ -111,6 +111,12 @@ node* pop(stack *s){
 // int isOperand(char ch){
 //     return ('0'<=ch && ch<='9');
 // }
+
+
+// evaluate the postfix expression
+// if the character is operand, create a node,create a temp LL, while the char is an operand
+// push the node it into temp LL, and finally  push the temp LL into the stack
+// and if the character is operator, pop 2 nodes from the stack and call appropriate function
 
 node* evaluate(char postfix[], stack s){
 
