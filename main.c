@@ -34,6 +34,8 @@ int main(){
     int j = 0;
     while(i<strlen(infix)){
 
+        // remove all spaces
+
         if (infix[i]!=' '){
 
           arr[j++] = infix[i];  
@@ -63,7 +65,7 @@ int main(){
 
     node*head = evaluate(postfix,s);
 
-    printf("Result:");
+    printf("Result:"); // result obtained is in the form of a LL
 
     print_LL(head);
 
