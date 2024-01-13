@@ -23,13 +23,16 @@ node* divide(node*head1, node*head2);
 
 typedef struct stack{
 
+    // implement stack using array and size should be provided during
+    // initialization
+
     node* *arr; // each element of array is a pointer to a node
 
     int size;
 
 
 
-   int top; 
+   int top; // plays the role of indexing for the array
 
 
 

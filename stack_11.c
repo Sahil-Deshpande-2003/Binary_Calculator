@@ -5,6 +5,7 @@
 #include"functions.h"
 #include <math.h>
 
+// stack to convert infix to postfix
  
 int stackTop(struct Stack* sp){
     return sp->arr[sp->top];
@@ -79,10 +80,20 @@ char* infixToPostfix(char* infix){
     struct Stack * sp = (struct Stack *) malloc(sizeof(struct Stack));
     sp->size = 10; 
     sp->top = -1;
+
+    // since each element of array is a char hence during malloc we write
+    // (char *)
+
     sp->arr = (char *) malloc(sp->size * sizeof(char));
+
+    // +1 is done to include null character
+
     char * postfix = (char *) malloc((strlen(infix)+1) * sizeof(char));
+
     int i=0; // Track infix traversal
+
     int j = 0; // Track postfix addition 
+
     while (infix[i]!='\0')
     {
         if (infix[i] == '('){
@@ -98,12 +109,19 @@ char* infixToPostfix(char* infix){
 
             }
 
-            POP(sp);
+            POP(sp); // to remove ')'
 
             i++;
         }
         if(isOperand(infix[i])){
             
+            /*to differentiate between say 354 and 459
+            use a while loop and insert 354 in postfix then insert a space
+            and now insert 459 into the array
+            */ 
+
+            
+
             do{
 
             
@@ -112,7 +130,7 @@ char* infixToPostfix(char* infix){
             j++;
             i++;
             }
-            while(isOperand(infix[i]));
+            while(isOperand(infix[i])); 
             postfix[j]=' ';
             j++;
            
@@ -130,14 +148,14 @@ char* infixToPostfix(char* infix){
             }
         }
 
-        else i++;
+        else i++; // simply ignore others chars like special symbols
     }
     while (!isEMPTY(sp))    
     {
         postfix[j] = POP(sp);
         j++;
     }
-    postfix[j] = '\0';
+    postfix[j] = '\0'; // character arrays in C are always terminated by null char
     return postfix;
 }
 

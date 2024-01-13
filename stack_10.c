@@ -49,6 +49,8 @@
 
 void init_stack(stack *s, int size){
 
+    // s is a stack of node pointers
+
     s->arr = (node**)malloc(sizeof(node*) * size);
     // since each ele is of type node* we use node** before malloc acc. to syntax of malloc
     s->size = size;
@@ -85,18 +87,27 @@ void push(stack *s,node*head){
 
 node* pop(stack *s){
 
+    // delete LL kept at top index, you can access it using head pointer
+
     if (isEmpty(*s)) return NULL;
 
    node*head = s->arr[s->top];
 
-   s->arr[s->top] = NULL; 
+   s->arr[s->top] = NULL; // head pointer which was initially pointing to
 
- 
+// the 1st node of LL, now starts pointing to NULL, it means that LL
+
+// is not present at top index
+
+        
+         
+    // Eg [1,2,3] top was pointing to 3 now it should point to 2
+
    s->top--;
 
 
 
-   return head;
+   return head; // return deleted element
 
 
     
@@ -130,7 +141,23 @@ node* evaluate(char postfix[], stack s){
 
         if (isOperator(ch)){
 
-            node* second_op = pop(&s);
+
+            // Eg 3-5 =>(postfix)=> [35-] -> 
+            /*
+                Stack
+                5
+                3
+
+            second_op = 5
+            first_op = 3
+            subtract_LL(first_op,second_op) means
+
+            subtract_LL(3,5) = -2
+
+            */
+            
+
+            node* second_op = pop(&s); // since stack is LIFO
       
 
             node* first_op = pop(&s);
@@ -212,6 +239,25 @@ node* evaluate(char postfix[], stack s){
             node*temphead = NULL;
             node*temptail = NULL;
 
+            /*I need to use while loop since if no. = 354 I dont want
+            stack to be
+
+                4
+                5
+                3
+
+            I want stack to be 354
+
+            hence while char is operand keep addiing it to LL
+
+            so LL is 3 -> 5 -> 4 and push this LL in the stack
+
+            temphead points to the node with data 3
+            
+
+            */ 
+            
+
             do{
 
             val =  postfix[i]-'0';
@@ -238,14 +284,15 @@ node* evaluate(char postfix[], stack s){
             push(&s,temphead);
 
         }
-        else i++;
+        else i++; // neither operator nor operand, Eg its a special symbol like $ then ignore it and just increment i
 
         
 
         /* code */
     }
 
-    return pop(&s);
+    return pop(&s); // final ans after evaluation of expression is kept
+    // at the top of LL
 
     
 }

@@ -147,12 +147,15 @@ node* subtract_LL(node *head1,node*head2){
 
   if (!head1 && !head2) return NULL;
   if (!head2) return head1;
+
+    // Eg 0 - 3 = -3
+
   if (!head1){
     head2->data*=-1;
     return head2;
   }
 
-   
+    // Remove leading 0's    
 
     while(!head1->data && head1->next) head1 = head1->next;
     while(!head2->data && head2->next) head2 = head2->next;
@@ -161,6 +164,8 @@ node* subtract_LL(node *head1,node*head2){
 	
     node *anshead = NULL;
     node *anstail = NULL;
+
+    // Eg -3 subtract 4 -> -(3 add 4) -> -7 
 	
 	if (head1->data<0){
 	
@@ -176,6 +181,8 @@ node* subtract_LL(node *head1,node*head2){
     int len2 = length(head2);
 
 // using their lengths, decide which linked list is bigger in size 
+
+    // flag = 0 means 1st LL is smaller than 2nd LL
 
     int flag = 1;
 
@@ -244,6 +251,8 @@ node* subtract_LL(node *head1,node*head2){
 
 // means 1st LL < 2nd LL, hence swap both LL and ans = -(this result) 
 
+// since 1 subtract 3 = -(3 subtract 1)
+
         node*c = head1;
         head1 = head2;
         head2  = c;
@@ -267,7 +276,7 @@ Eg  2 3 2
 
 after reversing ->
 
-	2 3 2
+	    2 3 2
       - 9 9 0
 2<9,so borrows 1 from 3,so that 2 becomes 12 and 3 becomes 2
 
@@ -419,7 +428,7 @@ node* multiplyLL(node *head1, node *head2){
     
 
     node*temp = newhead1;
-    node*temphead = NULL;
+    node*temphead = NULL; // stores this row of multiplication
 
     node*temptail = NULL;
 
@@ -444,6 +453,8 @@ int val = (temp->data)*(multiply_by) + carry;
         }
 
         if (!(temp->next) && carry){
+
+            // insert carry node to the ans LL
 
         node*ansnode = (node*)malloc(sizeof(node));
         ansnode->data = carry;
@@ -480,7 +491,7 @@ int val = (temp->data)*(multiply_by) + carry;
 
 
 
-   
+    //  temphead stores each row of multiplication
 
     temphead = ReverseLL(temphead);
 
@@ -546,6 +557,8 @@ node*copy_LL(node *head){
 
 
 char* check(node*head1,node*head2){
+
+    // check which LL is greater
 
 
     int len2 = length(head2);
@@ -670,14 +683,16 @@ node* divide(node*head1, node*head2){
 
 
 
-            head2 = addTwoLists(head2,dummy); // dummy stores the orginal head2, which as 2 in the above Eg
+            head2 = addTwoLists(head2,dummy); // dummy stores the orginal head2, which is 2 in the above Eg
 
 
             node*tp=(node*)malloc(sizeof(node));
             tp->data=1;
             tp->next=NULL;
 
-            counthead=addTwoLists(counthead,tp); // LL which stores quotient
+            counthead=addTwoLists(counthead,tp); // LL which stores quotient 
+
+            // keep adding 1 each time
 
 // what is the role of anshead?
 
@@ -707,6 +722,9 @@ node* divide(node*head1, node*head2){
         }
 
     while(check(head1,head2)!="LL2");
+
+    // 6/2 -> 2+2 = 4 6/4 -> 4+2 = 6 6/6 -> 6+2 = 8 6/8 not check returns
+    // LL2 hence stop and ans = 3
 
     }
 

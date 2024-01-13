@@ -3,8 +3,8 @@
 struct Stack
 {
     int size;
-    int top;
-    char *arr;
+    int top; // plays role of index
+    char *arr; // implement stack using array
 };
 
 int stackTop(struct Stack* sp);

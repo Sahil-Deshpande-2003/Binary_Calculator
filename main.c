@@ -12,19 +12,21 @@
 
 #include"stack_11.h"
 
+// User provides a infix expression, covert it to postfix and then evaluate postfix
+
 int main(){
 
     while(1){
 
     char infix[250]={'\0'};
 
-    char arr[250]={'\0'};
+    char arr[250]={'\0'}; // remove spaces from infix and store them into arr
 
     printf("Enter e to escape\n");
 
 
 
-    gets(infix);
+    gets(infix); // accept a string with spaces
 
 
 
@@ -46,7 +48,7 @@ int main(){
 
 
 
-    if (arr[0] == 'e' && strlen(arr) == 1) exit(0);
+    if (arr[0] == 'e' && strlen(arr) == 1) exit(0); // user entered 'e'
     
 
     
@@ -55,7 +57,7 @@ int main(){
    
 
     
-    char *postfix = infixToPostfix(arr);
+    char *postfix = infixToPostfix(arr); // convert infixToPostfix
 
 
 
@@ -63,7 +65,7 @@ int main(){
 
     init_stack(&s,100);
 
-    node*head = evaluate(postfix,s);
+    node*head = evaluate(postfix,s); // evaluate postifix expression, it returns the final ans in the form of LL
 
     printf("Result:"); // result obtained is in the form of a LL
 

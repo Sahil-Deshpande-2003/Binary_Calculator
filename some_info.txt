@@ -1,0 +1,83 @@
+project motive:
+
+range of int in C is -2,147,483,647 to 2,147,483,647
+
+to perform arithmetic operations on large numbers use LL, since there is no limitation on the size of LL (instead of using integers)
+
+
+limitation:
+
+1. Size of stack has to be predeclared since it is implemented in the form of array
+
+2. For expressions with huge nos involving division it throws error Eg 2783073028 * 267192037 / 901735782 + 289202837 /1836484093 since the logic for divisions involves repeated addition
+
+
+Improvement possible : Implement stack in the form of LL
+
+Data structures used:
+
+1. stack
+2. Linked List
+
+Applications:
+
+Stack:
+
+Function calls and recursion: When a function is called, the current state of the program is pushed onto the stack. When the function returns, the state is popped from the stack to resume the previous function’s execution.
+
+Undo/Redo operations: The undo-redo feature in various applications uses stacks to keep track of the previous actions. Each time an action is performed, it is pushed onto the stack. To undo the action, the top element of the stack is popped, and the reverse operation is performed.
+
+Expression evaluation: Stack data structure is used to evaluate expressions in infix, postfix, and prefix notations. Operators and operands are pushed onto the stack, and operations are performed based on the stack’s top elements.
+
+Browser history: Web browsers use stacks to keep track of the web pages you visit. Each time you visit a new page, the URL is pushed onto the stack, and when you hit the back button, the previous URL is popped from the stack.
+
+Balanced Parentheses: Stack data structure is used to check if parentheses are balanced or not. An opening parenthesis is pushed onto the stack, and a closing parenthesis is popped from the stack. If the stack is empty at the end of the expression, the parentheses are balanced.
+
+Backtracking Algorithms: The backtracking algorithm uses stacks to keep track of the states of the problem-solving process. The current state is pushed onto the stack, and when the algorithm backtracks, the previous state is popped from the stack.
+
+Linked List:
+
+Image viewer – Previous and next images are linked and can be accessed by the next and previous buttons.
+
+Previous and next page in a web browser – We can access the previous and next URL searched in a web browser by pressing the back and next buttons since they are linked as a linked list.
+
+Music Player – Songs in the music player are linked to the previous and next songs. So you can play songs either from starting or ending of the list.
+
+GPS navigation systems- Linked lists can be used to store and manage a list of locations and routes, allowing users to easily navigate to their desired destination.
+
+Robotics- Linked lists can be used to implement control systems for robots, allowing them to navigate and interact with their environment.
+
+Algorithm used:
+
+Conversion of infix to postifix
+
+Libraries:
+
+ 1. #include<stdio.h> => 
+
+  The name "stdlib" stands for "standard library".
+
+ standard library of C programming language which includes functions involving memory allocation, process control, conversions and others
+
+ 2.  #include<stdio.h> =>
+
+
+ The #include<stdio. h> directive is commonly used in C programming as it includes the standard input-output header file (stdio. h), which contains essential functions like printf() , scanf() , and many others. These functions are used to perform input and output operations in a C program.
+
+
+youtube links (which I referred):
+
+1. https://www.youtube.com/watch?v=422Q_yx2yA8&list=PLu0W_9lII9ahIappRPN0MCAgtOu3lQjQi&index=35&ab_channel=CodeWithHarry
+
+2. https://www.youtube.com/watch?v=_abDDg0Jw94&list=PLu0W_9lII9ahIappRPN0MCAgtOu3lQjQi&index=36&ab_channel=CodeWithHarry
+
+3. https://www.youtube.com/watch?v=6RmrX2uqllY&list=PLu0W_9lII9ahIappRPN0MCAgtOu3lQjQi&index=37&ab_channel=CodeWithHarry
+
+
+Limits:
+
+Addition and Subtraction work even for integers greater than 10 digits Eg 3212324343444+3231232132324-2323214989482
+Multiplication works for 10 digits Eg 1234567896   * 123567881 even for multiple nos Eg  123456789 * 2345129087 * 3520864587 and 213232434334 * 313232843238 * 21872817281 * 21872918291
+
+For expressions with huge nos involving division it throws error Eg 2783073028 * 267192037 / 901735782 + 289202837 /1836484093 since the logic for divisions involves repeated addition
+
